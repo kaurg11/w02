@@ -4,7 +4,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
@@ -96,5 +95,14 @@ class AgeMonthsTest {
     assertTrue(
         tooOld.getMessage().contains(String.valueOf(AgeMonths.MAX_MONTHS + 1)),
         "the message should name the value that was rejected");
+  }
+  @Test 
+  void oneBelowTheMaximumIsAllowed() {
+    AgeMonths age = AgeMonths.of(AgeMonths.MAX_MONTHS - 1);
+    assertEquals(AgeMonths.MAX_MONTHS - 1, age.months());
+  }
+  @Test
+  void remainderMonthsIsElevenOneBelowTheMaximum(){
+    assertEquals(11, AgeMonths.of(AgeMonths.MAX_MONTHS - 1).remainderMonths());
   }
 }

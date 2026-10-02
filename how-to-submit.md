@@ -31,6 +31,7 @@ Written deliverables go in the **`submission/`** folder.
 ## Steps
 
 ### 1. Implement and test locally
+
 ```bash
 ./gradlew test jacocoTestReport checkstyleMain
 ```
@@ -46,21 +47,25 @@ grep -rn "throw new UnsupportedOperationException" src/main/java   # should prin
 (Match `throw new`, not the bare class name — some Javadoc legitimately mentions the exception when
 documenting a method that throws it, and grepping for the name alone reports those as if they were
 unfinished work.)
+
 - All tests green.
 - Coverage: `build/reports/jacoco/test/html/index.html` — read it to find code you have *not*
   exercised. A diagnostic, not a target; the provided tests already push it high.
 - Style: `build/reports/checkstyle/` — clear the warnings.
 
 ### 2. Write your LLM evaluation
+
 Give the prompt in `LLM-Evaluation-prompt.md` to your LLM along with your source, your tests and your
 coverage number. Save the assessment as **`submission/LLM-Evaluation.md`** using
 `LLM-Evaluation-Template.md`, then add your own response to it.
 
 ### 3. Write your design introspection
+
 Copy `introspection-template.md` to **`submission/introspection.md`** and answer it in your own
 words, citing your actual code.
 
 ### 4. Commit and push
+
 ```bash
 git add -A
 git commit -m "Lab 1: AgeMonths + Animal"
@@ -75,14 +80,14 @@ git push
 
 ## Rubric (100 pts)
 
-| Category | Pts | What we look for |
-|---|---|---|
-| Immutability & encapsulation | 25 | `private final` fields, no setters, nothing leaks a mutable reference |
-| Constructor validation | 25 | Every documented rule enforced, `IntakeException` with a message that names the problem, validate-then-assign |
-| Correctness | 15 | The `toString` formats exactly as specified, including singular/plural and the whole-year case |
-| Testing | 15 | Cases the provided suite does **not** check — exception message content, boundaries, anything inferred from Javadoc rather than pinned by a test |
-| Code quality & style | 10 | Javadoc purpose statements on every public member, Checkstyle clean, delegation over duplication |
-| Introspection, LLM eval & code walk | 10 | Honest introspection + LLM self-assessment; you can explain every line you submitted **and can explain `Species`, which you did not write** |
+| Category                            | Pts | What we look for                                                                                                                                       |
+| ----------------------------------- | --- | ------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Immutability & encapsulation        | 25  | `private final` fields, no setters, nothing leaks a mutable reference                                                                                |
+| Constructor validation              | 25  | Every documented rule enforced,`IntakeException` with a message that names the problem, validate-then-assign                                         |
+| Correctness                         | 15  | The`toString` formats exactly as specified, including singular/plural and the whole-year case                                                        |
+| Testing                             | 15  | Cases the provided suite does**not** check — exception message content, boundaries, anything inferred from Javadoc rather than pinned by a test |
+| Code quality & style                | 10  | Javadoc purpose statements on every public member, Checkstyle clean, delegation over duplication                                                       |
+| Introspection, LLM eval & code walk | 10  | Honest introspection + LLM self-assessment; you can explain every line you submitted**and can explain `Species`, which you did not write**     |
 
 **Marks are deducted** for adding what this lab excludes: inheritance, collections, `equals`/`hashCode`.
 Those arrive in Labs 2 and 3, built on what you write here.
